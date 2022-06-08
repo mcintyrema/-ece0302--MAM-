@@ -49,7 +49,7 @@ std::size_t ArrayList<T>::getLength() const noexcept {
 template <typename T>
 bool ArrayList<T>::insert(std::size_t position, const T& item){
   
-  if(position > size){
+  if(position > size){ //position indexed greater than current size of array
     T *temp = new T[position]; //initialize array to size of position
     for(int i = 0; i < position; i++){ //copying array
       temp[i] = arr[i];
@@ -57,18 +57,22 @@ bool ArrayList<T>::insert(std::size_t position, const T& item){
     size = position; // changing size of original array to fit item at index position
     delete [] arr;
     arr = temp;
-    arr[position] = item; //adding item at index position
+    arr[position] = item; //adding item at end of array
     return true;
   }
   else if(position <= size){
     T *temp = new T[size+1];
     for(int i = 0; i < size; i++){
-      temp[i] = arr[i];
+      temp[i] = arr[i]; //copy all elemenmts to temp
     }
-    size++; //increase size by 1 bc added one item
+
+    temp[position] = item;
+    for(int i = position + 1; i < size; i++){ //shifting array
+      temp[i] = arr[i-1];
+    }
+
     delete [] arr;
     arr = temp;
-    arr[size - 1] = item;
     return true;
   }
   else{
@@ -81,12 +85,15 @@ bool ArrayList<T>::remove(std::size_t position){
   if(position <= size){
     for(int i = 0; i < size; i++){
       if(arr[i] == arr[position]){
-      T *temp = new T[size - 1];
-      std::copy(arr, arr+i, temp);
-      std::copy(arr+i+1, arr+size, temp+i);
-      delete [] arr;
-      arr = temp;
-      --size;
+        T *temp = new T[size];
+        std::copy(arr, arr+i, temp);
+        std::copy(arr+i+1, arr+size, temp+i);
+        delete [] arr;
+        arr = temp;
+        for(int i = position; i <= size; i++){
+          arr[i] = arr[i + 1];
+        }
+        --size;
       }
     }
     return true;
@@ -118,10 +125,16 @@ void ArrayList<T>::setEntry(std::size_t position, const T& newValue) {
     for(int i = 0; i < size; i++){
       temp[i] = arr[i];
     }
-    size++;
+
+    temp[position] = newValue;
+
+    for(int i = position + 1; i < size; i++){
+        temp[i] = arr[i-1];
+    }
+
     delete [] arr;
     arr = temp;
-    arr[size-1] = newValue;
+
   }
   else{
     

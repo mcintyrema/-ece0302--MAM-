@@ -52,7 +52,7 @@ TEST_CASE("test copy constructor", "[ArrayList]"){
   REQUIRE(&list.operator=(listb) == &list);
 }
 
-TEST_CASE("add shows if item added to array", "[ArrayList]"){
+TEST_CASE("insert shows if item added to array", "[ArrayList]"){
   ArrayList<std::string>list;
 
   std::string item = "chapstick";
@@ -92,4 +92,20 @@ TEST_CASE("setEntry adds item at position", "[ArrayList]"){
   const std::string item = "chapstick";
   list.setEntry(0, item);
   REQUIRE(list.getEntry(0) == item);
+}
+
+TEST_CASE("remove will shift array to close gap", "[ArrayList]"){
+  ArrayList<int>arr;
+
+  int a, b, c, d;
+
+  arr.insert(0,a);
+  arr.insert(1,b);
+  arr.insert(2,c);
+  arr.insert(3, d);
+
+  arr.remove(1);
+
+  REQUIRE(arr.getEntry(2) == d);
+
 }

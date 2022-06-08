@@ -41,10 +41,13 @@ public:
   // set the value of the item at position 
   void setEntry(std::size_t position, const T& newValue);
 
+  // private variable accessor
+  void setLength(std::size_t dim);
+  
 private:
 
-  // TODO
-  
+  T *arr;
+  std::size_t size;
 };
 
 #include "array_list.tpp"

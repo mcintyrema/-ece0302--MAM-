@@ -41,8 +41,27 @@ bool isPost(string s) {
   return (firstChar == 0);
 }
 
-void convert(string &postfix, string &prefix) {
+void convert(string &postfix, string &prefix) { //postfix and prefix already valid
 
   // TODO
+  size_t sizePost = postfix.length();
+  size_t sizePre = prefix.length();
+
+  //putting postfix operators in front of prefix
+  prefix.append(1, postfix[sizePost - 1]);
+
+  if(isoperator(postfix[sizePost-1])){ //if last value is an operator, base case for recursion
+    int start = endPost(postfix, sizePost-2); //index to last valid postfix expression in string
+
+    string temp;
+    temp = postfix.substr(0, start); //temp holds all values up to the last valid postfix expression
+    convert(temp, prefix); // recursion
+
+    string temp2;
+    size_t sizeTemp2 = sizePost - start - 1;
+    temp2 = postfix.substr(start, sizeTemp2);
+    convert(temp2, prefix); 
+  }
+  return;
   
 }

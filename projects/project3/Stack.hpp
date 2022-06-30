@@ -22,6 +22,7 @@ public:
 	Stack();
 	/** Returns the number of items on the stack.
 	    @return The integer number of items on the stack. */
+	//Stack(const Stack<ItemType>& aStack);	
 	int size() const;
 	/** Determines whether this stack is empty.
 	    @return True if the stack has no items, or false if not. */

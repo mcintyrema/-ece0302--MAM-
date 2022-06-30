@@ -28,8 +28,8 @@ private:
 	Stack<std::string>* parseStack;
 	/** Vector to store the tokenized input string and the token types */
 	std::vector<TokenStruct> tokenizedInputVector;
-  
   // You can add or change the private fields.
+  bool result;
 
 public:
 	/** The class constructor.
@@ -58,7 +58,7 @@ public:
 		@post If successful, the tokenized input string is determined to be valid XML.
 		@param None.
 		@return True if the tokenized string is valid XML, or false if not. */
-	bool parseTokenizedInput();
+	bool parseTokenizedInput() const;
 	/** Empties and then fills a given vector with the tokenized input string. This
 	    method returns a vector whether or not the tokenized input string was valid XML or not.
 	    The vector elements are of type TokenStruct. This data type has two fields,

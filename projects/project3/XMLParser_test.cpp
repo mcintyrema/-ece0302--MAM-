@@ -42,16 +42,7 @@ TEST_CASE( "Test Stack push and size", "[ADT Stack]" )
 		}
 }
 
-TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
-{
-	   INFO("Hint: tokenize single element test of XMLParse");
-		// Create an instance of XMLParse
-		XMLParser myXMLParser;
-		string testString = "<test>stuff</test>";
-		bool success;
-		success = myXMLParser.tokenizeInputString(testString);
-		REQUIRE(success);
-}
+
 
 
 TEST_CASE( "Test Stack handout-0", "[XMLParser]" )
@@ -120,6 +111,16 @@ TEST_CASE( "Test XMLParser tokenizeInputString Handout-0", "[XMLParser]" )
 		}
 }
 
+TEST_CASE( "Test XMLParser tokenizeInputString", "[XMLParser]" )
+{
+	   INFO("Hint: tokenize single element test of XMLParse");
+		// Create an instance of XMLParse
+		XMLParser myXMLParser;
+		string testString = "<test>stuff</test>";
+		bool success;
+		success = myXMLParser.tokenizeInputString(testString);
+		REQUIRE(success);
+}
 
 // You can assume that the beginning and the end of CONTENT will not be filled with whitespace
 TEST_CASE( "Test XMLParser tokenizeInputString Handout-1", "[XMLParser]" )
